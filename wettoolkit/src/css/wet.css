@@ -1,0 +1,42 @@
+.wb-tabs [role=tablist] {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative; }
+  .wb-tabs [role=tablist] li {
+    display: inline-block;
+    background: #ebf2fc;
+    border: 1px solid #ccc;
+    color: #000;
+    cursor: pointer;
+    margin: 0 10px 0 0;
+    position: relative;
+    text-align: center; }
+  .wb-tabs [role=tablist] li.active {
+    background: #fff;
+    border-bottom: 0;
+    cursor: default;
+    padding-bottom: 1px;
+    z-index: 2; }
+    .wb-tabs [role=tablist] li.active a {
+      border-top: 4px solid #666;
+      cursor: default;
+      padding-top: 6px; }
+  .wb-tabs [role=tablist] li a {
+    display: inline-block;
+    color: #000 !important;
+    padding: 10px;
+    font-size: 1rem;
+    text-decoration: none; }
+.wb-tabs .tabpanels {
+  overflow: hidden;
+  position: relative; }
+  .wb-tabs .tabpanels > div {
+    border: 1px solid #ccc;
+    padding: 1rem 1.5rem; }
+
+.wb-tabs [role=tablist].generated li {
+  border-bottom: 0;
+  top: 1px; }
+
+/*# sourceMappingURL=wet.css.map */

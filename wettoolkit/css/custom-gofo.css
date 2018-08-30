@@ -1,0 +1,116 @@
+
+/*Custom CSS for GOFO Portal*/
+
+.gofo-menu {
+    text-align:center;
+    background: #34495e;
+}
+
+.gofo-menu ul {
+    list-style: none;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: inline-block;
+}
+
+.gofo-menu ul li {
+    display: block;
+    position: relative;
+    float: left;
+    font-size: 14px;
+    background: #34495e;
+    border-right: 1px solid #343434;
+    border-left: 1px solid #343434;
+}
+
+.gofo-menu li ul { display: none; }
+
+.gofo-menu ul li a {
+    display: block;
+    padding: 1em;
+    text-decoration: none;
+    color: #ffffff !important;
+}
+
+.gofo-menu-width{
+    white-space: nowrap !important;
+    color:#343434 !important;
+    visibility: hidden;
+}
+
+.gofo-menu ul li a:hover { background: #2c3e50; }
+
+.gofo-menu li:hover > ul {
+    display: block;
+    position: absolute;
+    z-index: 5;
+}
+
+.gofo-menu li:hover li { float: none; border: 2px solid #343434;}
+
+.gofo-menu li:hover a { background: #34495e; }
+
+.gofo-menu li:hover li a:hover { background: #2c3e50; }
+
+.gofo-menu .main-navigation li ul li { border-top: 0; }
+
+.gofo-menu ul ul ul {
+    left: 100%;
+    top: 0;
+}
+
+.gofo-menu ul:before, .gofo-menu ul:after {
+    content: " ";
+    display: table;
+}
+
+.gofo-menu ul:after { clear: both; }
+
+.gofo-table-head{
+    background-color: #6b6a69;
+}
+
+.gofo-table-head h2{
+    color: white !important;
+}
+
+.gofo-h2-black{
+    color: black !important;
+    font-size: 16pt !important;
+}
+
+.gofo-menu hr{
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 0 !important;
+    border: 0 !important;
+}
+
+.gofo-table td{
+    font-size: 15px;
+    padding: 10px 5px !important;
+    border: none !important;
+}
+
+.gofo-table{
+    border: none !important;
+}
+
+.gofo-category{
+    color: red !important;
+    margin-bottom: 12px;
+    font-size: 24px !important;
+}
+
+.gofo-page-title{
+    font-size: 16px !important;
+    font-weight: bold !important;
+}
+
+.gofo-region{
+    color: #3366ff !important;
+}
+
+.gofo-content{
+    font-size: 16px !important;
+}

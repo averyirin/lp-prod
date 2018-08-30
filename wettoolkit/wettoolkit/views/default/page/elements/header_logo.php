@@ -1,0 +1,4 @@
+<?php
+/**
+ * Elgg header logo
+ */

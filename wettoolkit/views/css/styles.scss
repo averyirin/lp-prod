@@ -1,0 +1,1072 @@
+/*#wb-main-in form input:not([type=submit]):not([type=file]):not([type=checkbox]):not([type=reset]):not([type=button]), form.elgg-form-login input:not([type=submit]):not([type=file]):not([type=checkbox]):not([type=radio]) {
+	    border: 5px solid rgba(153,153,153,0.5);
+	    background: rgba(255,255,255,0.5);
+	    border-radius:0;
+}
+
+#wb-main-in form input:hover:not([type=submit]):not([type=file]):not([type=checkbox]):not([type=reset]):not([type=button]), form.elgg-form-login input:hover:not([type=submit]):not([type=file]):not([type=checkbox]):not([type=radio]){
+		border:5px solid rgba(51,80,117,0.5);
+}
+
+#wb-main-in form input:focus:not([type=submit]):not([type=file]):not([type=checkbox]):not([type=reset]):not([type=button]), form.elgg-form-login input:focus:not([type=submit]):not([type=file]):not([type=checkbox]):not([type=radio]){
+	border:5px solid #335075;
+	background: rgba(255,255,255,0.5);
+}*/
+$background-color: #fff;
+$widget-border: #DBDBDB;
+$widget-header-color: #827c7b;
+$widget-link-color: #335075;
+$widget-activity-bg: whitesmoke;//#f0f0f0;
+$midnight-blue: #2c3e50;
+$link-color:#335075;
+
+
+.col-3, .col-4{
+	float:left;
+	margin:0;
+	padding:0;
+}
+
+.col-4{
+	width:33.3%;
+}
+
+.col-3{
+	width:25%;
+}
+
+#fancybox-outer #fancybox-content > div > div{
+	padding:1rem;
+}
+
+#wb-main-in{
+	/* Login Page Styles
+	******************************/
+	.elgg-module-walledgarden{
+		h1, h2, h3, h4{
+			font-family: 'Open Sans', sans-serif;
+			font-weight:500;
+		}
+		.elgg-col{
+			padding:1rem 0 1rem 15px;
+		}
+		h1.elgg-heading-walledgarden{
+			border:none !important;
+			text-indent:0;
+			height:auto !important;
+		}
+
+		.warning-message{
+			margin:30px 10% 30px 0;
+		}
+
+		div{
+
+			h2,h3{
+				color:#111;
+				margin-bottom:15px;
+			}
+			h1{
+				font-size:2rem;
+			}
+			h2{
+				font-size:1.75rem;
+			}
+			h3{
+				font-size:1.5em;
+			}
+			h4{
+				font-size:1.25em;
+			}
+		}
+	}
+
+	background:$background-color !important;
+	
+	.elgg-page-body{
+		padding:0;
+		background:$widget-activity-bg !important;
+		.elgg-body.elgg-main{
+			padding:20px 10px;
+		}
+		h2{
+			padding-bottom:0;
+		}
+	}
+
+	.elgg-menu-site{
+		z-index:2;
+	}
+
+	.sort-control{
+		font-size:2em;
+	}
+
+	.elgg-menu-entity{
+		height:auto;
+	}
+
+	#event_manager_event_edit > fieldset > table td{
+		padding:8px;
+	}
+
+	/* System Message Styles
+	*****************************/
+	.elgg-state-success{
+		background: $link-color;
+		opacity:1 !important;
+	}
+
+	/* Styling for Secondary Nav (Vertical)
+	****************************/
+	.elgg-menu-page, .elgg-menu-owner-block{
+		border:2px solid $widget-border;
+		li{
+			background:$widget-activity-bg;
+			border-bottom:2px solid $widget-border;
+			margin:0;
+			a{
+				background:transparent;
+				border-radius:0;
+				padding:.8em 1em;
+				font-family: 'Open Sans', sans-serif;
+				font-size:.875rem;
+				-webkit-transition: background 0.3s ease 0s;
+				transition: background 0.3s ease 0s;
+				text-decoration:none;
+				position:relative;
+				margin:0;
+			}
+		}
+		li:last-child{
+			border-bottom:none;
+		}
+	}
+
+	form.elgg-form-login{ 
+		input[type="text"]{
+			height:auto;
+		}
+	}
+	form{
+		input[type=text], [type='password'], [type="file"], select, textarea{
+			border: 5px solid rgba(153,153,153,0.5);
+			background: rgba(255,255,255,0.5);
+			border-radius:0;
+
+			&:hover{
+				border:5px solid rgba(51,80,117,0.5);
+			}
+
+			&:focus{
+				border:5px solid #335075;
+				background: rgba(255,255,255,0.5);
+			}
+		}
+
+		label{
+			margin-bottom:6px;
+		}
+	}
+
+	//remove 33px height on river-response forms (comment on activity)
+	.elgg-river-responses{
+		form{
+			height:auto;
+		}
+	}
+	a.elgg-button-delete{
+		background:#ff0000 !important;
+		-webkit-box-shadow: 1px 0px #7F0000, 0px 1px #400000,
+          2px 1px #7F0000, 1px 2px #400000,
+          3px 2px #7F0000, 2px 3px #400000,
+          4px 3px #7F0000, 3px 4px #400000;
+		box-shadow: 1px 0px #7F0000, 0px 1px #400000,
+          2px 1px #7F0000, 1px 2px #400000,
+          3px 2px #7F0000, 2px 3px #400000,
+          4px 3px #7F0000, 3px 4px #400000;
+
+    	&:active{
+    		-ms-transform: translate(2px, 2px);
+			-webkit-transform: translate(2px, 2px);
+		   	transform: translate(2px, 2px);
+		   	-webkit-box-shadow: 1px 0px #7F0000, 0px 1px #400000,
+              	2px 1px #7F0000, 1px 2px #400000;
+   			box-shadow: 1px 0px #7F0000, 0px 1px #400000,
+              	2px 1px #7F0000, 1px 2px #400000;
+         }
+	}
+
+	.elgg-breadcrumbs li a{
+		font-size:1.5em;
+		font-weight:500;
+	}
+
+	//widget manager styles
+
+	.elgg-widgets{
+		float:left;
+	}
+
+	
+
+	.elgg-module-widget{
+		overflow:visible;
+		background-color:transparent;
+		margin:0 .5rem 1.5rem;
+		padding:0;
+
+		.elgg-button-action{
+			margin-bottom:10px;
+		}
+
+		.elgg-head {
+			height:auto;
+			h3{
+				padding:10px 20px;
+			}
+		}
+		> .elgg-body{
+			overflow:visible;
+			//border:1px solid $widget-border !important;
+			-webkit-box-shadow: 0 0 5px rgba(0,0,0,0.2);
+			-moz-box-shadow: 0 0 5px rgba(0,0,0,0.2);
+			box-shadow: 0 0 5px rgba(0,0,0,0.2);
+		}
+
+		.widget-button{
+			display:block;
+			width:150px;
+			border:1px solid $link-color;
+			background:none;
+			margin:0px 1.125rem 1.5rem 0;
+			padding:10px 0;
+			text-align:center;
+			text-decoration: none;
+			//text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+			color:$link-color;
+			font-size:1.33em;
+			font-weight:normal;
+			letter-spacing: 2px;
+				}
+
+		.widget-button:hover{
+			background: $link-color;
+			border-color:#fff;
+			color:#fff;
+		}
+	}
+
+	.elgg-widget-instance-index_activity .elgg-widget-content{
+		padding:10px;
+
+		ul#activity-filter{
+			li{
+				float:left;
+				background:$widget-border;
+				margin:0;
+				//border-radius:4px 4px 0px 0px;
+				color:rgba(102,102,102,.8);
+				border-top:3px solid $widget-border;
+			}
+			li.active, li:hover{
+				background:$widget-activity-bg;
+				color:#111;
+				border-top:3px solid $widget-link-color;
+			}
+			a{
+				display:inline-block;
+				font-size: 1rem;
+				padding:.625rem 1.5rem;
+				color:inherit;
+			}
+			a:hover, a:active, a:focus{
+				text-decoration: none;
+			}
+		}
+
+		.elgg-list-river{
+			background:$widget-activity-bg;
+			border-top:none;
+			margin:0;
+			border-radius:0px;
+		}
+		.elgg-list-river:first-child{
+
+		}
+
+		div#more{
+			clear:both;
+		}
+	}
+
+	//group widget
+	.elgg-widget-instance-index_groups{
+		ul{
+			border:none;
+			li{
+				border:none;
+				a{
+					font-weight:normal;
+					font-size:inherit;
+				}
+			}
+		}
+	}
+
+	.elgg-widget-content{
+		position:relative;
+		box-shadow:none;
+		
+		h3.widget-header{
+			color:#191919;
+			font-size:1.5rem;
+			line-height:1.5em;
+			font-weight:normal;
+			padding:0;
+			margin:.375rem 0 1rem;
+		}
+		.widget-your-network h3.widget-header{
+			font-size:.875rem;
+			width:96% !important;
+		}
+
+		label.widget-label{
+			float:left;
+		}
+
+
+		select.widget-select{
+			height:auto;
+			min-width:0;
+			margin-left:10px;
+			background:$widget-border;
+			border-radius:0;
+			padding:4px 6px;
+		}
+
+		select.widget-select:focus{
+				border-color:#176ca7;
+		}
+
+		.ajax-spinner{
+			text-align:center;
+		}
+		.widget-your-network {
+			ul{
+				margin:10px 0;
+				li{
+					border-left:3px solid $widget-link-color;
+					padding:.375rem 0 .25rem 8px;
+					margin-bottom:.375rem;
+					line-height:1;
+					a{
+						font-size:1rem;
+					}
+				}
+				li:nth-of-type(5){
+					a{
+						margin-right:9px;
+					}
+				}
+				li:hover{
+					border-left: 4px solid $midnight-blue;
+				}
+				li span{
+					float:right;
+					position:relative;
+					bottom:1px;
+					background: $widget-link-color;
+					color:#fff;
+					padding:3px 6px;
+					border-radius:4px;
+				}
+			}
+
+			.widget-button{
+					margin-top:20px;
+			}
+
+			.my-profile{
+				margin-bottom:10px;
+				> div{
+					float:left;
+					margin:0;
+					width:50%;
+				}
+				> div:nth-of-type(2){
+					width:45%;
+				}
+				img{
+					width:100%;
+				}
+				.edit-profile{
+
+					border:none;
+					padding:0 0 0 5px;
+					margin:0;
+					a{
+						color:$link-color;
+						font-size:1em;
+						margin:0 0 4px 0;
+						padding:0;
+						display:block;
+					}
+					a:nth-of-type(4){
+						white-space:nowrap;
+					}
+				}
+			}
+
+		}
+
+		#widget-my-resources{
+			>div{
+				display:none;
+				
+			}
+			> div.filter-select, div.selected{
+				display:block;
+			}
+		}
+
+		ul li {
+			margin-bottom:.375rem;
+				a{
+					color: $widget-link-color;
+					font-size:1rem;
+				}
+		}
+
+		//add padding for activity feed
+		.elgg-list-river{
+			padding:10px;
+			li{
+				line-height: 1.5;
+			}
+		}
+
+		.col-1{
+			width:50%;
+			float:left;
+			position:relative;
+			overflow:visible;
+
+			.drop{
+				display:block;
+				text-align: center;
+				vertical-align: top;
+				margin-top:17px;
+				text-decoration:none;
+				font-size:2.369em;
+			}
+
+			div.dropdown{
+				display:none;
+				z-index:99999999999;
+				overflow:visible;
+				position:absolute;
+				background:#fff;
+				border:1px solid gray !important;
+				padding:12px 36px 12px 12px;
+			}
+		}
+
+		#widget-welcome{
+			font-weight:normal;
+			>h2{
+				width:auto;
+				float:left;
+				color:#191919;
+				font-size:1.5rem;
+				margin-top:.375rem;
+			}
+			>ul{
+				margin: .375rem 0 1.625rem .75rem;
+				float:left;
+				li{
+					margin:0;
+					background:$widget-border;
+					float:left;
+					border-top:3px solid $widget-border;
+					color:rgba(102,102,102,.8);
+					font-weight:normal;
+					a{
+						margin:0;
+						padding:.625rem 1.625rem;
+						display:inline-block;
+						color:inherit;
+						font-size:1rem;
+						text-decoration:none;
+						font-weight:inherit;
+					}
+				}
+				li.selected, li:hover{
+					background:$widget-activity-bg;
+					color:#111;
+					font-weight:normal;
+					border-top:3px solid $widget-link-color;
+				}
+			}
+
+			.index-search{
+				input[type='text']{
+					background:$widget-activity-bg;
+					font-weight:700;
+					float:left;
+					width:80%;
+					margin:0;
+					border-radius:0;
+					border:none;
+					border-bottom:1px solid $widget-border;
+					padding:5px 0 5px 10px;
+					box-shadow:2px 2px 1px 0px #666 inset;
+					//box-shadow:3px 3px 4px 0px #666 inset;
+				}
+				input[type='text']:focus{
+					box-shadow:2px 2px 1px 0px #666 inset;
+				}
+				.index-search-submit{
+					background:$link-color;
+					color:#fff !important;
+					height:44px;
+					margin:0;
+					border:2px solid $link-color;
+					border-radius:0;
+					font-size:.87rem;
+					font-weight:300;
+					box-shadow:none;
+				}
+
+				.index-search-submit:hover{
+					background: $widget-activity-bg;
+					color:$link-color !important;
+				}
+				.index-search-submit:active{
+					transform:none;
+				}
+			}
+
+			#search-options{
+				margin:1rem 0;
+				label{
+					display:block;
+					padding-left:15px;
+					text-indent:-15px;
+					line-height: 1;
+					margin-bottom:10px;
+					font-weight:normal;
+				}
+				input{
+					width:13px;
+					height:13px;
+					min-height: 0px!important;
+					padding: 0;
+				    margin:0;
+				    vertical-align: bottom;
+				    position: relative;
+				    top: -1px;
+				    *overflow: hidden;
+				}
+			}
+
+			.widget-welcome-content{
+				clear:left;
+				>div{
+					display:none;
+					margin:0;
+				}
+				>div.active, >div#ajax-form{
+					display:block;
+				}
+
+				.widget-button{
+					float:left;
+				}
+			}
+		}
+
+		.col-1:first-child{
+			width:49%;
+			border-right:1px solid black;
+			margin:0;
+		}
+		.col-1:last-child{
+			height:100%;
+		}
+
+	}
+}
+
+.ui-dialog.ui-widget{
+	background:#fff !important;
+	z-index:9999 !important;
+}
+#dialog-new-feature{
+	background:#fff;
+}
+/*
+** END OF WIDGET STYLES
+****************************/
+
+.elgg-page{
+		form input[type="text"], select{
+			height:44px;
+		}
+}
+
+#wb-main-in .elgg-button-submit, .elgg-button-submit, #wb-main-in .elgg-button-delete, #wb-main-in .elgg-button-action, input[type='submit'], input[type='reset']{
+	padding:.6em 1.3em !important;
+	border-radius:5px;
+	-webkit-transition: background 0.3s ease 0s;
+	transition: background 0.3s ease 0s;
+}
+
+#wb-main-in .elgg-button-submit, #wb-main-in .elgg-button-delete, #wb-main-in .elgg-button-action, input[type='submit'], input[type='reset']{
+	font-weight:700;
+	background: #335075;
+	border: 0;
+	color: #fff !important;
+	text-shadow:none;
+	display:inline-block !important;
+	text-decoration:none;
+	position:relative;
+	margin-right:12px;
+	-webkit-box-shadow: 1px 0px #1D2D42, 0px 1px #283F5B,
+          2px 1px #1D2D42, 1px 2px #283F5B,
+          3px 2px #1D2D42, 2px 3px #283F5B,
+          4px 3px #1D2D42, 3px 4px #283F5B;
+		box-shadow: 1px 0px #1D2D42, 0px 1px #283F5B,
+          2px 1px #1D2D42, 1px 2px #283F5B,
+          3px 2px #1D2D42, 2px 3px #283F5B,
+          4px 3px #1D2D42, 3px 4px #283F5B;
+
+    	&:active{
+    		-ms-transform: translate(2px, 2px);
+			-webkit-transform: translate(2px, 2px);
+		   	transform: translate(2px, 2px);
+		   	-webkit-box-shadow: 1px 0px #1D2D42, 0px 1px #283F5B,
+              	2px 1px #1D2D42, 1px 2px #283F5B;
+   			box-shadow: 1px 0px #1D2D42, 0px 1px #283F5B,
+              	2px 1px #1D2D42, 1px 2px #283F5B;
+         }
+         &:last-child{
+         	margin-right:0;
+         }
+}
+
+
+
+/**
+** Forum Styles
+*****************************************/
+#filter-dropdown{
+	margin:25px 0 25px 0;
+	>a, span{
+		font-size:16px;
+	}
+	a{
+		padding:5px;
+	}
+	ul{
+		display:none;
+		margin:2px 0px 10px 119px;
+		border:1px solid $widget-border;
+		border-top:none;
+		padding-top:13px;
+		li{
+			margin-bottom:5px;
+		}
+		a:hover{
+			text-decoration: underline;
+		}
+	}
+	> a{
+		text-decoration:none;
+		border:1px solid $widget-border;
+	}
+	>a:after{
+		margin-left:4px;
+		content:"\25BC";
+		font-size:10px;
+	}
+	>a:hover:after{
+		visibility: visible;
+	}
+}
+#filter-dropdown.blog-filter{
+	margin-top:5px;
+	ul{
+		margin-left:106px;
+	}
+}
+
+
+/**
+** TOOLTIP STYLES
+*****************************************/
+a.tooltip-icon{
+	position:absolute !important;
+	top:5px;
+	right:5px;
+	padding:0 !important;
+	.fa{
+		font-size:18px;
+		color:$widget-link-color;
+	}
+}
+a.tooltip{
+	position:relative;
+	display:inline;
+	z-index:1;
+	img{
+		width:14px;
+		height:14px;
+	}
+}
+a.tooltip:after{
+  display: block;
+  visibility: hidden;
+  position: absolute;
+  bottom: 0;
+  right: 20%;
+  opacity: 0;
+  content: attr(data-tool); /* might also use attr(title) */
+  height: auto;
+  min-width: 120px;
+  padding: 5px 8px;
+  z-index: 9999;
+  color: #fff;
+  font-size:12px;
+  text-decoration: none;
+  text-align: left;
+  background: rgba(0,0,0,1);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+ 
+a.tooltip:before {
+  position: absolute;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  right: 50%;
+  bottom: 0px;
+  opacity: 0;
+  content: "";
+  border-style: solid;
+  border-width: 6px 6px 0 6px;
+  border-color: rgba(0,0,0,1) transparent transparent transparent;
+}
+a.tooltip:hover:after{ visibility: visible; opacity: 1; bottom: 54px; }
+a.tooltip:hover:before{ visibility: visible; opacity: 1; bottom: 48px; }
+a.tooltip:not(.tip-active):hover:after{ visibility: hidden; opacity: 1; bottom: 40px; }
+a.tooltip:not(.tip-active):hover:before{ visibility: hidden; opacity: 1; bottom: 34px; }
+
+a.tooltip.bottom:after{
+	bottom:auto;
+	top:0;
+}
+a.tooltip.bottom:hover:after { top: 28px; }
+a.tooltip.bottom:before {
+  border-width: 0 5px 8.7px 5px;
+  border-color: transparent transparent rgba(0,0,0,0.85) transparent;
+  top: 0px
+}
+a.tooltip.bottom:hover:before { top: 20px; }
+
+/** MOBILE STYLES **/
+@media screen and (max-width: 1200px){
+	#wb-core-in, #wb-main, #gcwu-psnb-in, #gcwu-psnb .mb-menu{
+		width:100% !important;
+	}
+}
+@media screen and (max-width:981px){
+		ul#activity-filter{
+			width:30%;
+			display:block;
+			vertical-align:top;
+			float:left;
+			li{
+				width:99%;
+				border-top:none !important;
+				border-left:3px solid $widget-border;
+				a{
+					padding:.6em 1em !important;
+				}
+			}
+			li.active, li:hover{
+				border-top:none !important;
+				border-left:3px solid $widget-link-color;
+			}
+		}
+		div#activity-feed{
+			width:70%;
+			display:block;
+			float:left;
+		}
+}
+@media screen and (max-width: 768px){
+	#wb-main-in .elgg-widget-content #widget-welcome{
+		> h2{
+			margin-bottom:.41rem;
+		}
+		> ul{
+		clear:left;
+		margin:0 0 1.25rem;
+		}
+	}
+#wb-main-in .elgg-widget-content{
+	#widget-welcome{
+		.index-search{
+			input[type='text']{
+				width:100%;
+				float:none;
+				box-shadow:2px 2px 1px 0px #666 inset, -2px 2px 1px 0px #666 inset;
+			}
+		}
+		.index-search-submit{
+			float:right;
+			margin-bottom:1rem !important;
+		}
+		#search-options{
+			clear:both;
+		}
+	}
+}
+}
+@media screen and (max-width: 768px){
+
+	#wb-main-in{
+		.elgg-menu-owner-block, .elgg-menu-page{
+			li{
+				margin: 12px;
+			}
+		}
+
+		.elgg-page-default{
+			display:block !important;
+		}
+	}
+
+	.elgg-module-walledgarden{
+		.elgg-col-1of2{
+			padding:0 2em;
+		}
+	}
+}
+
+
+
+@media screen and (max-width:691px){
+	#wb-main-in{
+		.my-profile{
+			.profile-avatar{
+				max-width:150px;
+			}
+		}
+		.widget-your-network{
+			ul li a{
+				font-size:1.375rem !important;
+			}
+		}
+	}
+}
+
+@media screen and (max-width:568px){
+	#wb-main-in{
+		.elgg-widget-content #widget-welcome > ul li a{
+			font-size:.875rem;
+			padding:.625rem 1.25rem;
+		}
+
+		ul#activity-filter{
+			width:33%;
+			li a{
+				font-size:.875rem !important;
+				padding: .6em !important;
+			}
+		}
+
+		div#activity-feed{
+			width:67%;
+			.elgg-list-river li {
+				font-size:.75rem;
+				a{
+					font-size: .875rem !important;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 240px){
+	#start-tour, #bookmark{
+		background: url('../graphics/question_mark_mobile.png') center center;
+		background-size:cover;
+		width:20px;
+		height:20px;
+		position: absolute;
+		top:92px;
+    	right: 15px;
+		color: $widget-link-color;
+   		font-size: 1.333em;
+   		letter-spacing: .01em;
+   		font-weight: 500;
+
+    	.fa{
+    		font-size:1.333em;
+    		//padding-right:10px;
+    	}
+    	img{
+    		width:24px;
+    		height:24px;
+    	}
+	}
+
+	.elgg-icon-add-bookmark{
+		background: url('../graphics/star.png') center center !important;
+		background-size:cover !important;
+	}
+
+	.elgg-module-walledgarden{
+		h1.elgg-heading-walledgarden{
+			display:block !important;
+		}
+
+		.elgg-col-1of2{
+			width:100%;
+		}
+	}
+
+	#wb-head-in #gcwu-psnb{
+		//display:block;
+		li{
+			float:none;
+			a{
+				color:#fff;
+				background:none;
+			}
+		}
+	}
+
+	#wb-main-in{
+		.elgg-col-1of3{
+			width:100%;
+			min-height:200px !important;
+		}
+
+		#widget-manager-multi-dashboard-tabs{
+			position:static;
+		}
+
+		#elgg-widget-col-1, #elgg-widget-col-2, #elgg-widget-col-3{
+			width:100%;
+			clear:left;
+		}
+
+		.my-profile{
+			.edit-profile a{
+					font-size:1.375rem !important;
+					margin-bottom: 15px !important;
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 376px){
+	#wb-head-in #gcwu-psnb{
+		li{
+			float:left;
+			clear:none;
+		}
+	}
+}
+
+@media screen and (min-width:690px) and (max-width:1125px){
+	#wb-main-in{
+		#elgg-widget-col-1, #elgg-widget-col-3{
+			width:30%;
+		}
+
+		#elgg-widget-col-2{
+			width:70%;
+			clear:none;
+		}
+		.my-profile{
+			.edit-profile a{
+				font-size:.875rem !important;
+				margin-bottom: 4px !important;
+			}
+		}	
+	}
+}
+
+@media screen and (min-width: 768px){
+	.elgg-module-walledgarden{
+		.elgg-col-1of2{
+			width:48%;
+		}
+	}
+
+	#wb-main-in{
+		.elgg-col-1of3{
+			width:50%;
+		}
+
+		#widget-manager-multi-dashboard-tabs{
+			position:absolute;
+		}
+
+		
+	}
+}
+
+@media screen and (min-width:961px){
+	#start-tour, #bookmark{
+		background: url('../graphics/question_mark.png') center center;
+		background-size:cover;
+		top:17px;
+		z-index:999;
+	}
+	#bookmark{
+		background: url('../graphics/star.png') center center;
+		background-size:cover;
+	}
+}
+
+@media screen and (min-width:1126px){
+	#wb-main-in{
+		.elgg-col-1of3{
+			width:33.33%;
+		}
+
+		#elgg-widget-col-1, #elgg-widget-col-3{
+			width:18%;
+			clear:none;
+		}
+
+		#elgg-widget-col-3{
+			width:22%;
+		}
+
+		#elgg-widget-col-2{
+			width:60%;
+			clear:none;
+		}
+
+		.index-search-submit{
+			width:17% !important;
+		}
+		.my-profile{
+			.edit-profile a{
+				font-size:.875rem !important;
+				margin-bottom: 4px !important;
+			}
+		}	
+	}
+}
+
+
+
