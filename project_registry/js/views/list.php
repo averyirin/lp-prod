@@ -2,7 +2,7 @@
 <div class='template-header col-lg-12'>
     <h2><?php echo elgg_echo('projects:all'); ?></h2>
     <div class="btn-group">
-        <a href='#/projects/create' class='elgg-button elgg-button-action float-right'><?php echo elgg_echo('projects:create'); ?></a>
+        <a href='#/projects/request_support' class='elgg-button elgg-button-action float-right'><?php echo elgg_echo('support_request:request_support'); ?></a>
         <a ng-if="user.project_admin" href='#/projects/dashboard' class='elgg-button elgg-button-action'><?php echo elgg_echo('projects:dashboard'); ?></a>
         <a ng-if="user.project_admin" href='#/projects/manage_admins' class='elgg-button elgg-button-action float-left'><?php echo elgg_echo('projects:manageadmin:addadmin'); ?></a>
         <!-- <a ng-if="user.project_admin" ng-click='vm.printAll("DRT 5.1")' href='' class='elgg-button elgg-button-action'>Print All DRT 5.1</a> -->
