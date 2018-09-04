@@ -5,6 +5,69 @@
 		<h2>{{vm.project.title}}</h2>
 		<a href='#/projects' class='elgg-button elgg-button-action'><?php echo elgg_echo('projects:all:list'); ?></a>
         <a ng-click="vm.print()" href='' target='_blank' class='elgg-button elgg-button-action'><?php echo elgg_echo('projects:print'); ?></a>
+
+
+
+				<!-- Confluence Integration for only project admins -->
+			         <div ng-if="user.project_admin">
+
+			             <!-- Confluence Integration Modal  ------------------------------------>
+			             <script type="text/ng-template" id="confluenceModal.html">
+			                 <div class="row modal-header">
+			                     <div class="col-xs-11">
+			                         <h3 class="modal-title" style="margin-top: 0px;"><?php echo elgg_echo('projects:confluence:modal:title'); ?></h3>
+			                     </div>
+			                     <div class="col-xs-1" id="closeHeader"><a style="" class="elgg-button elgg-button-cancel"
+			                                                               type="button" ng-click="cancel()"><?php echo elgg_echo('projects:confluence:modal:x'); ?></a>
+			                     </div>
+			                 </div>
+			                 <div class="row  modal-body">
+			                     <p><?php echo elgg_echo('projects:confluence:modal:whereAddTo'); ?></p>
+			                     <div class="col-sm-6">
+			                         <label><input type="radio" ng-model="spaceType" value="new"><?php echo elgg_echo('projects:confluence:modal:newSpace'); ?></label>
+			                         <p><?php echo elgg_echo('projects:confluence:modal:newSpaceDesc'); ?></p>
+			                     </div>
+			                     <div class="col-sm-6">
+			                         <label><input type="radio" ng-model="spaceType" value="old"><?php echo elgg_echo('projects:confluence:modal:existingSpace'); ?></label>
+			                         <select style="width:100%;max-width:100%;margin-top:5px;" ng-disabled="spaceType == 'new'" ng-model="selectSpace"
+			                                 ng-options='obj.key as obj.name for obj in allSpaces'>
+			                         </select>
+			                     </div>
+			                 </div>
+			                 <div class="row modal-footer">
+			                     <div ng-if="spaceType == 'new'">
+			                         <a class="elgg-button elgg-button-action" type="button" ng-click="ok()"><?php echo elgg_echo('projects:confluence:modal:createNewSpace'); ?></a>
+			                     </div>
+			                     <div ng-if="spaceType == 'old'">
+			                         <a class="elgg-button elgg-button-action" type="button" ng-click="ok()"><?php echo elgg_echo('projects:confluence:modal:addExistingSpace'); ?></a>
+			                     </div>
+			                 </div>
+			             </script>
+			             <!-- Confluence Integration Modal  ------------------------------------------------->
+			             <!--    Already added to confluence btn     -->
+			             <div  ng-show="vm.inConfluence">
+			                 <a target="_blank"   href="{{vm.confluenceUrl}}"
+			                    id="confluenceAlreadyBtn"
+			                    class='elgg-button elgg-button-action elgg-button-cancel'>
+			                     <?php echo elgg_echo('projects:confluence:view'); ?></a>
+			             </div>
+			             <!--    Add to confluence btn     -->
+			             <div ng-show="!vm.inConfluence">
+			                 <a  id="confluenceAddBtn" ng-click="vm.addConfluence()" href=''
+			                     class='elgg-button elgg-button-action'>
+			                     <?php echo elgg_echo('projects:confluence:add'); ?></a>
+			             </div>
+
+			         </div>
+			         <!-- End confluence integration -->
+
+
+
+
+
+
+
+
 		<div class="project-brief-info">
 			<div class='submitted' ng-if="vm.project.status=='Submitted'">
 				<span class='glyphicon exclamation'></span>
@@ -751,16 +814,43 @@
 
             </div>
 
-			<div class='form-row clearfix' data-row-id="attachments">
-				<div class='col-sm-12 field-header'>
-					<label><?php echo elgg_echo('projects:files'); ?></label>
+				<div class='form-row clearfix' data-row-id="attachments">
+							<div class='col-sm-12 field-header'>
+								<label><?php echo elgg_echo('projects:files'); ?></label>
+								<a class='glyphicon edit-button attachments' data-id="attachments" ng-if='vm.project.can_edit' ng-click="vm.toggleEditMode($event)"></a>
+							</div>
+							<div class='col-sm-12 field-body'>
+								<div data-field-id="attachments">
+									<div ng-repeat='attachment in vm.project.attachments'>
+										<a href='{{attachment.url}}' >{{attachment.title}}</a>
+									</div>
+								</div>
+								<div ng-if="vm.project.editable['attachments']">
+									<div ng-repeat='(key, attachment) in vm.project.attachments'>
+										<div class="row" style="border-bottom: 1px solid #dde4e6;
+										padding: 5px;">
+											<div class="col-xs-11"  >
+													<a href='{{attachment.url}}' >{{attachment.title}}</a>
+											</div>
+											<div class="col-xs-1">
+												<a class="glyphicon delete-button action-item ng-scope"  ng-click="vm.deleteAttachment(vm.project.id, key)" ng-delete-once="Are you sure you want to detach this file {{attachment.title}}? There is no undo!"></a>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class='col-sm-12 field-header'>
+											<label><?php echo elgg_echo('support_request:files:add'); ?></label>
+										</div>
+										<input type="file" ngf-select="" ng-model="vm.files" name="file" ngf-multiple="true">
+
+									</div>
+									<div class='editable-content-buttons'>
+										<a class='elgg-button elgg-button-action elgg-button-cancel' data-id="attachments" ng-click="vm.toggleEditMode($event)"><?php echo elgg_echo('projects:cancel'); ?></a>
+										<a class='elgg-button elgg-button-action elgg-button-accept' data-id="attachments" ng-click="vm.update('attachments'); vm.toggleEditMode($event)"><?php echo elgg_echo('projects:accept'); ?></a>
+									</div>
+								</div>
+							</div>
 				</div>
-				<div class='col-sm-12 field-body'>
-					<div ng-repeat='attachment in vm.project.attachments'>
-						<a href='{{attachment.url}}' >{{attachment.title}}</a>
-					</div>
-				</div>
-			</div>
 		</div>
 
 		<div class='project project-sidebar col-sm-3' style="float:right;">
