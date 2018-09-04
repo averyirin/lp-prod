@@ -17,12 +17,15 @@ function projectsRouter($method, $page, $publicKey) {
                 $department_owner = get_input('department_owner', null);
                 $createdAt    = get_input('created_at', null);
                 $ownerGuid    = get_input('owner_guid', null);
+                $classification    = get_input('classification', null);
 
                 $status ? $params['status']       = $status : '';
                 $project_type ? $params['project_type'] = $project_type : '';
                 $department_owner ? $params['department_owner'] = html_entity_decode($department_owner) : '';
                 $createdAt ? $params['created_at']   = $createdAt : '';
                 $ownerGuid ? $params['owner_guid']   = $ownerGuid : '';
+                $classification ? $params['classification'] = $classification : '';
+
 
                 $session = new Session($publicKey, $signature, $params);
 
@@ -48,6 +51,14 @@ function projectsRouter($method, $page, $publicKey) {
                     $session->setHeader(400);
                     $status = 'error';
                 }
+            }else if (get_input('action') == 'detachFile') {
+                    $session = new Session(null, null, null);
+                    $session->setHeader(200);
+                    elgg_set_ignore_access();
+                		$project_id =  $_POST['projectId'];
+                		$attachment_index =  $_POST['attachmentIndex'];
+                    $data = Project::detachAttachment($attachment_index, $project_id);
+                    $status = 'success';
             } else {
                 $payload            = json_decode(file_get_contents("php://input"), true);
                 $payload['user_id'] = (int) $payload['user_id'];
