@@ -172,6 +172,10 @@ class Project {
 	
 	public function validate()
 	{
+		if($this->classification == "Task"){
+			$this->required =  array('title', 'org');
+		}
+
 		//check required fields
 		foreach($this as $key => $val) {
 			if(in_array($key, $this->required)) {
@@ -195,7 +199,7 @@ class Project {
 			if(in_array($key, $this->jsonFields)) {
 				$project->$key = json_encode($val);
 			}
-			else if($key=='options' || $key=='required'){
+			else if($key=='options' || $key=='required'|| $key=='requiredTaskFields'){
 				//
 			}
 			else{
@@ -221,7 +225,7 @@ class Project {
 			if($key == 'opis' || $key == 'sme' || $key == 'usa') {
 				$project->$key = json_encode($val);
 			}
-			else if($key=='options' || $key=='required' || $key=='id'){
+			else if($key=='options' || $key=='required' || $key=='id'|| $key=='requiredTaskFields'){
 				//
 			}
 			else{
@@ -273,6 +277,25 @@ class Project {
 			return false;
 		}
 	}
+	public static function detachAttachment($attachment_index, $project_id){
+		elgg_set_ignore_access();
+		$files = elgg_get_entities_from_relationship(array(
+				"relationship" => "attachment",
+				"relationship_guid" => $project_id,
+				"inverse_relationship" => true
+			));
+			$filesArr = array();
+			foreach($files as $key=>$file) {
+					if($key == $attachment_index){
+						$f = array($key, $file['title'], $file['guid']);
+						$filesArr[] = $f;
+						remove_entity_relationship($file['guid'], "attachment", $project_id);
+					}
+		 }
+		 return $filesArr;
+	}
+
+
 
 	public static function saveAttachments($attachments, $id, $accessId)
 	{
@@ -356,7 +379,18 @@ class Project {
 			$this->attachments[] = $attachment;
 		}
 	}
+
 	
+	
+	private function getAllAttachments(){
+		$attachments = elgg_get_entities_from_relationship(array(
+			"relationship" => "attachment",
+			"relationship_guid" => $this->id,
+			"inverse_relationship" => true
+		));
+		return $attachments;
+	}
+
 	private function getAttachments()
 	{
 		return $this->attachments;
