@@ -245,4 +245,87 @@
     height: 150px;
 }
 
+/*
+ * Confluence Integration Styles
+ */
+.confluenceModal{
+   position:absolute;
+    top:20%;
+    left: 25%;
+    background: whitesmoke;
+    z-index: 10000;
+    border: 1px solid #666;
+
+}
+.confluenceModal .modal-header{
+    background: #164a7a;
+    box-sizing: border-box;
+    border-bottom: 3px solid #666;
+    font-size: 1rem;
+    margin: 0;
+    padding: 0px;
+}
+
+.confluenceModal .modal-header h3{
+    color:#fff;
+    padding-top:5px;
+}
+.confluenceModal .modal-body{
+    padding: 15px 15px 0 15px;
+}
+.confluenceModal .modal-footer{
+    padding: 15px 15px 15px 15px;
+}
+.confluenceModal .modal-footer .elgg-button{
+    color: #ffffff !important;
+    background: #2572b4 !important;
+    border-color: #143c5f !important;
+    border-radius: 4px !important;
+    padding: .6em 1.3em calc(.6em + 3px)!important;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    font-family: Open-Sans,sans-serif;
+    letter-spacing: .5px;
+    margin-right: 15px;
+}
+.confluenceModal .row{
+    margin-left:0px;
+    margin-right:0px;
+}
+.confluenceModal .modal-footer .elgg-button-cancel{
+    color: #000 !important;
+    background: #ccc !important;
+    border-color: #777 !important;
+}
+#wb-main-in #confluenceAddBtn{
+    margin-right: 15px;
+}
+#wb-main-in  #confluenceAlreadyBtn{
+    margin-right: 15px;
+    background-color: #333 !important;
+    color:#337ab7;
+}
+
+.confluenceModal .lowerOption{
+    padding-top:10px;
+}
+
+.confluenceModal #closeHeader{
+    text-align: right;padding-left:0;padding-right: 0px;
+}
+
+.modal-backdrop{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    display: table;
+    background: rgba(1, 1, 1, 0.8);
+    z-index: 9999;
+    text-align: center;
+}
+/*# sourceMappingURL=styles.css.map */
+
+
 /*# sourceMappingURL=styles.css.map */

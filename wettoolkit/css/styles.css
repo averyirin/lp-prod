@@ -509,7 +509,7 @@
 *********************************/
 .ui-dialog.ui-widget {
   background: #fff !important;
-  z-index: 99999 !important; }
+}
 
 #dialog-new-feature {
   background: #fff; }
