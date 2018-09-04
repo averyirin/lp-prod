@@ -1,5 +1,5 @@
 <?php
- 
+
 ?>
 <nav id="sidebar">
 	<div class="table-of-contents">
@@ -24,31 +24,7 @@
 				<a class="list-group-item" href="" ng-click='vm.animateToField($event)' data-list-id="description"><?php echo elgg_echo('projects:description'); ?></a>
 			</li>
 			<li>
-				<a class="list-group-item" href="" ng-click='vm.animateToField($event)' data-list-id="scope"><?php echo elgg_echo('projects:scope'); ?></a>
-			</li>
-			<li>
-				<a class="list-group-item" href="" ng-click='vm.animateToField($event)' data-list-id="opi"><?php echo elgg_echo('projects:opi:title'); ?></a>
-			</li>
-			<li>
-				<a class="list-group-item" href="" ng-click='vm.animateToField($event)' data-list-id="priority"><?php echo elgg_echo('projects:priority:title'); ?></a>
-			</li>
-			<li>
-				<a class="list-group-item" href="" ng-click='vm.animateToField($event)' data-list-id="sme"><?php echo elgg_echo('projects:sme'); ?></a>
-			</li>
-			<li>
-				<a class="list-group-item" href="" ng-click='vm.animateToField($event)' data-list-id="is_limitation"><?php echo elgg_echo('projects:isLimitation:title'); ?></a>
-			</li>
-			<li>
-				<a class="list-group-item" href="" ng-click='vm.animateToField($event)' data-list-id="update_existing_product"><?php echo elgg_echo('projects:updateExistingProduct:title'); ?></a>
-			</li>
-			<li>
-				<a class="list-group-item" href="" ng-click='vm.animateToField($event)' data-list-id="life_expectancy"><?php echo elgg_echo('projects:lifeExpectancy:title'); ?></a>
-			</li>
-			<li>
-				<a class="list-group-item" href="" ng-click='vm.animateToField($event)' data-list-id="comments"><?php echo elgg_echo('projects:comments'); ?></a>
-			</li>
-			<li>
-				<a class="list-group-item" href="" ng-click='vm.animateToField($event)' data-list-id="attachments"><?php echo elgg_echo('projects:files'); ?></a>
+				<a class="list-group-item" href="" ng-click='vm.animateToField($event)' data-list-id="timeline"><?php echo elgg_echo('support_request:task:completion_date'); ?></a>
 			</li>
 		</ul>
 	</div>
@@ -59,9 +35,9 @@
 		var toc = $('.table-of-contents');
 		var sidebarTop = sidebar.offset().top + 4;
 		var windowWidth = window.innerWidth;
-		
+
 		$(window).scroll(function() {
-			if($('#sidebar') != null){
+				if($('#sidebar') != null){
 				sidebarTop = $('#sidebar').offset().top + 4;
 				var windowTop = $(window).scrollTop();
 
@@ -73,7 +49,9 @@
 				else if(sidebarTop > windowTop || window.innerWidth < 768) {
 					toc.css('position', 'static');
 				}
-			}
+
+				}
+
 		});
 	});
 </script>

@@ -41,6 +41,10 @@ $content =
 	<div class='alert alert-success fade' ng-cloak ng-show='successMessage'>
 		<strong>Success:</strong>{{message}}
 	</div>
+	<!-- Failure message -->
+	<div class='alert alert-warning fade' ng-cloak ng-show='errorMessage'>
+		<strong>Failure:</strong>{{message}}
+	</div>
 	
 	<div class='fade' ng-cloak ng-view>
 	</div>

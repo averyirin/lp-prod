@@ -10,6 +10,7 @@ function apiInit() {
     require_once(dirname(__FILE__) . "/routers/projectsRouter.php");
     require_once(dirname(__FILE__) . "/routers/usersRouter.php");
     require_once(dirname(__FILE__) . "/routers/tripReportsRouter.php");
+    require_once(dirname(__FILE__) . "/routers/confluenceSpaceRouter.php");
 	elgg_register_library('api:core', elgg_get_plugins_path() . 'api/lib/core.php');
 	elgg_load_library('api:core');
 	elgg_register_page_handler('api', 'apiPageHandler');

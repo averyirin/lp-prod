@@ -106,6 +106,36 @@
                                 }
                             }
                         }).
+			when('/projects/request_support', {
+                            templateUrl: 'projects/request_support',
+                            controller: '',
+                            resolve: {
+                            }
+                        }).
+                        when('/projects/create_task', {
+                          templateUrl: 'projects/create_task',
+                          controller: 'Projects as vm',
+                          resolve: {
+                              resolveProject: function () {
+                                  return {};
+                              }
+                          }
+                        }).
+                        when('/projects/view_task/:project_id', {
+                            templateUrl: function (params) {
+                                return 'projects/view_task/' + params.project_id;
+                            },
+                            controller: 'Projects as vm',
+                            resolve: {
+                                resolveProject: function (project, $route) {
+                                    var paramObject = new Object();
+
+                                    return project.getProject(paramObject, $route.current.params.project_id);
+                                }
+                            }
+                        }).
+
+
                         otherwise({
                             redirectTo: '/projects'
                         });

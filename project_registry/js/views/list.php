@@ -12,6 +12,22 @@
     <div ng-include="'projects/sidebar'"</div>
 </section>
 <section class='col-md-9 projects'>
+
+   <div class='wb-tabs'>
+     <ul role="tablist" class="generated">
+         <!--<li><a href='' ng-click='vm.filter($event)' data-filter-type="classification" id='All'><?php echo elgg_echo('projects:label:all'); ?></a></li>-->
+         <li class="active"><a href='' ng-click="vm.filter($event)" data-filter-type="classification" id='Project'><?php echo elgg_echo('support_request:projects'); ?></a></li>
+         <li><a href='' ng-click="vm.filter($event)" data-filter-type="classification" id='Task'><?php echo elgg_echo('support_request:tasks'); ?></a></li>
+         <li><a href='' ng-click="vm.filter($event)" data-filter-type="classification" id='Unassigned'><?php echo elgg_echo('support_request:unassigned'); ?></a></li>
+   </ul>
+       <div class="tabpanels">
+           <div style="padding:0.5rem">
+
+
+
+
+
+
     <div class='wb-tabs'>
         <ul role="tablist" class="generated">
             <li class="active"><a href='' ng-click='vm.filter($event)' data-filter-type="owner_guid" id='all'><?php echo elgg_echo('projects:label:all'); ?></a></li>
@@ -32,7 +48,13 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat='(key,project) in vm.projects'>
-                            <td><a href='#/projects/view/{{project.id}}'>{{project.title}}</a></td>
+                                    <td ng-if="project.classification == 'Task'">
+                                       <a  href='#/projects/view_task/{{project.id}}'>{{project.title}}</a>
+                                        </td>
+                                    <td ng-if="project.classification !== 'Task'">
+                                       <a   href='#/projects/view/{{project.id}}'>{{project.title}}</a>
+                                    </td>
+
                             <td>
                                 <select id='statusSelect{{key}}' ng-if="user.project_admin" ng-model='project.status' ng-options='status.name as status.name for status in vm.statuses' ng-change='vm.updateStatus(key)'></select>
 
@@ -42,7 +64,12 @@
                             <td>{{project.time_created}}</td>
                             <td>{{project.department_owner}}</td>
                             <td style="text-align: center;">
-                                <a href="#/projects/view/{{project.id}}" class='glyphicon edit-button action-item' ng-if='project.can_edit'></a>
+                                <a ng-if="project.classification == 'Task'" href="#/projects/view_task/{{project.id}}" class='glyphicon edit-button action-item' ng-if='project.can_edit'></a>
+
+                                <a ng-if="project.classification !== 'Task'" href="#/projects/view/{{project.id}}" class='glyphicon edit-button action-item' ng-if='project.can_edit'></a>
+
+
+
                                 <a class="glyphicon delete-button action-item" ng-if="project.can_edit" ng-click='vm.deleteProject(project.id, key)' ng-delete-once="<?php echo elgg_echo('projects:deleteConfirm'); ?>"></a>
                             </td>
                         </tr>
@@ -51,4 +78,14 @@
             </div>
         </div>
     </div>
+
+
+
+           </div>
+       </div>
+     </div>
+
+
+
+
 </section>

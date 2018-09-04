@@ -208,6 +208,63 @@ $english = array(
      * Search entry
      */
     'item:object:project_registry'                => 'Support Requests',
+    /**
+     * Support Requests
+     *
+     */
+	'support_request:tasks' => 'Tasks',
+	'support_request:projects' => 'Projects', 
+	'support_request:unassigned' => 'Unassigned', 
+'support_request:request_support'                => 'Request Support',
+    'support_request:heading:task'                => 'Create a task request',
+    'support_request:heading:project'                => 'Creating a project request',
+    'support_request:create:task'                => 'Create task',
+    'support_request:create:project'                => 'Create project',
+    'support_request:back'                => 'Back',
+    'support_request:task:submit'               => 'Create Task',
+    'support_request:task:completion_date'               => 'Requested Completion Date',
+    'support_request:project:create_title' => 'Support Request - Create Project',
+    'support_request:task:create_title' => 'Support Request - Create Task',
+    'support_request:task:timeline:helptext' => 'Estimated completion date',
+    'support_request:files:add' => 'Add new file(s)',
+'support_request:create_task_description' =>'<p>Tasks typically require less than 80 hours of work to complete. <p>
+          <p>Examples include:<br/>          
+            <ul>
+              <li>Supporting the use of DLN IT&E Suite of tools; </li>
+              <li>Editing a small portion of a pre-existing course;</li>
+              <li>Multimedia IT&E support (i.e. minor imagery, video and audio production requirements) </li>
+            </ul>
+          </p>',
+'support_request:create_project_description'=>'<p>Work that requires more than 80hrs to complete will be filtered into various project types. <p>
+<p>As a result of the increased time to complete a project, additional information will be required for your submission, which includes but is not limited to: <br/>          
+  <ul>
+    <li>Proposed project scope; </li>
+    <li>Potential investment;</li>
+    <li>Possible risk(s);</li>
+    <li>Projected timelines/milestones; </li>
+<li>Proposed impact; and</li>
+ <li>Possible savings. </li>
+</ul>
+</p>',
+        
+ /**
+     * Confluence Integration
+     */
+    'projects:confluence:add' => 'Add to Confluence',
+    'projects:confluence:already' => 'Already in Confluence',
+    'projects:confluence:view' => 'View in Confluence',
+    'projects:confluence:modal:title' => "Add project to Confluence",
+    'projects:confluence:modal:addTo' => "Add to Confluence",
+    'projects:confluence:modal:x' => "x",
+    'projects:confluence:modal:newSpace' => "New space",
+    'projects:confluence:modal:newSpaceDesc' => "(A new space will automatically be created)",
+    'projects:confluence:modal:existingSpace' => "Existing space",
+    'projects:confluence:modal:createNewSpace' => "Create new space",
+    'projects:confluence:modal:addExistingSpace' => "Add to existing space",
+	   'projects:confluence:modal:whereAddTo' => "Where would you like to add this project to?",
+
+
+
 );
 
 add_translation("en", $english);

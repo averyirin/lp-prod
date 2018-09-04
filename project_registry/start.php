@@ -96,6 +96,18 @@ function projects_page_handler($project) {
         case 'dashboard':
             include "$angular_dir/dashboard.php";
             break;
+	case 'toc_task':
+            include "$angular_dir/toc_task.php";
+            break;
+        case 'request_support':
+            include "$angular_dir/request_support.php";
+            break;
+        case 'view_task':
+            include "$angular_dir/view_task.php";
+            break;
+	case 'create_task':
+		include "$angular_dir/create_task.php";
+		break;
         default:
             return false;
     }

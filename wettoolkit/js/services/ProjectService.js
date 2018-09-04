@@ -41,6 +41,78 @@
             });
         }
 
+
+
+
+  function getSpace(id) {
+            var params = {'public_key': publicKey};
+            var Space = $resource('internapi/confluence_spaces/:id',
+                {"id": "@id"},
+                {
+                    "query": {
+                        'params': params
+                    }
+                }
+            );
+            return Space.get({}, {'id': id}).$promise.then(function
+(results) {
+                return results;
+            }, function (error) {
+                return $q.reject(error);
+            });
+        }
+        function getSpaces() {
+            var params = {'public_key': publicKey};
+            var Space = $resource('internapi/confluence_spaces/:id',
+                {},
+                {
+                    "query": {
+                        'params': params
+                    }
+                }
+            );
+            return Space.query().$promise.then(function (results) {
+                return results;
+            }, function (error) {
+                return $q.reject(error);
+            });
+        }
+        function createNewCharter(body, addMethod, spaceKey,
+projectGuid, spaceName) {
+            var params = {'public_key': publicKey};
+            var Space = $resource('internapi/confluence_spaces/:id',
+                {},
+                {
+                    "save": {
+                        method: 'POST',
+                        'params': params
+                    }
+                }
+            );
+            var sendData = new Object();
+            sendData.body = body;
+            sendData.addMethod = addMethod;
+            sendData.spaceKey = spaceKey;
+            sendData.projectGuid = projectGuid;
+            sendData.spaceName = spaceName;
+            return Space.save(sendData).$promise.then(function (success)
+{
+                return success;
+            }, function (error) {
+                return $q.reject(error);
+            });
+        }
+
+
+
+
+
+
+
+
+
+
+
         function getProjects(filter) {
             var params = {'public_key': publicKey};
 
@@ -174,6 +246,10 @@
         return {
             getProject: getProject,
             getProjects: getProjects,
+	    	getSpace: getSpace,
+		getSpaces: getSpaces,
+		createNewCharter: createNewCharter,
+	
             create: create,
             edit: edit,
             update: update,
