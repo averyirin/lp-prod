@@ -9,7 +9,7 @@ $language = array (
 	'projects:confluence:add' => "Ajouter à Confluence",
     	'projects:confluence:already' => "Déjà dans Confluence",
 	'projects:confluence:view' => "Voir dans Confluence",
-    	'projects:confluence:modal:title' => "Ajouter le projet à Confluence",
+    	'projects:confluence:modal:title' => "Ajouter le projet à Confluencea",
     	'projects:confluence:modal:addTo' => "Ajouter à Confluence",    
 	'projects:confluence:modal:x' => "x",
 
