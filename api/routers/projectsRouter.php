@@ -17,7 +17,8 @@ function projectsRouter($method, $page, $publicKey) {
                 $department_owner = get_input('department_owner', null);
                 $createdAt    = get_input('created_at', null);
                 $ownerGuid    = get_input('owner_guid', null);
-                $classification    = get_input('classification', null);
+                $classification    = get_input('classification', null);                
+		$archived    = get_input('archived', null);
 
                 $status ? $params['status']       = $status : '';
                 $project_type ? $params['project_type'] = $project_type : '';
@@ -25,6 +26,7 @@ function projectsRouter($method, $page, $publicKey) {
                 $createdAt ? $params['created_at']   = $createdAt : '';
                 $ownerGuid ? $params['owner_guid']   = $ownerGuid : '';
                 $classification ? $params['classification'] = $classification : '';
+                $archived ? $params['archived'] = $archived : '';
 
 
                 $session = new Session($publicKey, $signature, $params);
@@ -41,7 +43,34 @@ function projectsRouter($method, $page, $publicKey) {
             exit;
             break;
         case 'POST':
-            if (get_input('action') == 'attachFile') {
+
+		if(get_input('action') == 'archiveProject'){
+
+                	$session =  new Session($publicKey, $signature, $params);
+                	if (Project::archiveProject($_POST['projectId'], $_POST['accessId'])) {
+                  		  $session->setHeader(200);
+
+                   		 $status = 'success';
+                	} else {
+                 		   $session->setHeader(400);
+                  		  $status = 'error';
+               		}
+		}else if(get_input('action') == 'unarchiveProject'){
+
+                	$session = new Session($publicKey, $signature, $params);
+                	if (Project::unarchiveProject($_POST['projectId'], $_POST['accessId'])) {
+                  		  $session->setHeader(200);
+
+                   		 $status = 'success';
+                	} else {
+                 		   $session->setHeader(400);
+                  		  $status = 'error';
+               		}
+
+
+		}
+
+            else if (get_input('action') == 'attachFile') {
                 $session = new Session(null, null, null);
                 if (Project::saveAttachments($_FILES['files'], $_POST['projectId'], $_POST['accessId'])) {
                     $session->setHeader(200);

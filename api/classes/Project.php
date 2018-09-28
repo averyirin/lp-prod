@@ -95,6 +95,16 @@ class Project {
 	
 	protected function loadAll($params)
 	{
+		//all is ''
+		//true is 'true'
+		//false is 'false'
+		$returnArchived = $params['archived'];
+		//filter out false for query
+		$params['archived'] = null;
+		if($returnArchived == null || $returnArchived == 'true'){
+			$params['archived'] = $returnArchived;
+		}	
+
 		$this->options = array(
 			"type" => "object",
 			"subtype" => "project_registry",
@@ -117,7 +127,20 @@ class Project {
 		}
 		
 		$rows = elgg_get_entities_from_metadata($this->options);
-		$this->fillWithRows($rows);
+
+		$curRows = array();
+		if($returnArchived == 'false'){			
+			foreach($rows as $r){
+				if($r->archived != 'true'){
+					$curRows[] = $r;
+				}
+			}
+			
+			$this->fillWithRows($curRows);
+
+		}else{		
+			$this->fillWithRows($rows);
+		}
 	}
 
 	private function fill($row)
@@ -294,6 +317,20 @@ class Project {
 		 }
 		 return $filesArr;
 	}
+	public static function archiveProject($project_id){
+		elgg_set_ignore_access();
+		$project = get_entity($project_id);
+		$project->archived = 'true';
+		return true;
+	}
+
+
+	public static function unarchiveProject($project_id){
+		elgg_set_ignore_access();
+		$project = get_entity($project_id);
+		$project->archived = null;
+		return true;
+	}
 
 
 
@@ -429,15 +466,18 @@ class Project {
 				$subject = elgg_echo('email:project:submit:heading');
 				$link = "{$site_url}projects#/projects/view/{$this->id}";
 				$message = elgg_echo('email:project:submit:body', array($usa_name, $owner->name, $this->title, $link, $site->name, $site_url));
-
-				if(elgg_send_email($from, $to, $subject, $message))
-				{
+				if($project->classification != 'Task'){
+					if(elgg_send_email($from, $to, $subject, $message)){
+						return true;
+					}else {
+						register_error(elgg_echo('email:project:submit:error'));
+						return false;
+					}
+				}else{
 					return true;
 				}
-				else {
-					register_error(elgg_echo('email:project:submit:error'));
-					return false;
-				}			
+				
+							
 				break;
 		}
 	}

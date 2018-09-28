@@ -25,6 +25,16 @@
                         }
                     }
                 }).
+			when('/archive', {
+                    templateUrl: 'projects/archive',
+                    controller: 'Projects as vm',
+                    resolve: {
+                        resolveProject: function () {
+                            return {};
+                        }
+                    }
+                }).
+
                         when('/projects/create', {
                             templateUrl: 'projects/add',
                             controller: 'Projects as vm',
@@ -95,16 +105,16 @@
                         }).
                         when('/projects/dashboard', {
                             templateUrl: 'projects/dashboard',
-                            controller: 'ProjectsDashboard as vm',
-                            resolve: {
-                                projects: function (project) {
-                                    return project.getProjects().then(function (results) {
-                                        return results.data;
-                                    }, function (results) {
-                                        console.log(results);
-                                    });
-                                }
-                            }
+                            controller: 'ProjectsDashboard as vm',                          
+                    		resolve: {
+                        resolveProject: function () {
+                            return {};
+                        }
+                    }
+
+
+
+
                         }).
 			when('/projects/request_support', {
                             templateUrl: 'projects/request_support',
@@ -134,6 +144,9 @@
                                 }
                             }
                         }).
+
+
+
 
 
                         otherwise({
