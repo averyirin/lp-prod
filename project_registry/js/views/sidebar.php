@@ -2,23 +2,42 @@
  
 ?>
 <nav id="sidebar">
+
+    <div>
+        <h3><?php echo elgg_echo('support_request:filterByCollection');?></h3>
+        <ul>
+
+            <li>
+                <a class="list-group-item active" href="" ng-click='vm.filter($event)' id="false" data-filter-type="archived"><?php echo elgg_echo('support_request:current'); ?></a>
+            </li>
+
+            <li>
+                <a class="list-group-item" href="" ng-click='vm.filter($event)' id="true" data-filter-type="archived"><?php echo elgg_echo('support_request:archived'); ?></a>
+            </li>
+
+        </ul>
+    </div>
+
     <div>
         <h3><?php echo elgg_echo('projects:filterByStatus'); ?></h3>
         <ul>
             <li>
-                <a class="list-group-item active" href="" ng-click='vm.filter($event)' id="All" data-filter-type="status"><?php echo elgg_echo('projects:label:all'); ?></a>
+                <a class="list-group-item active" href="" ng-click='vm.filter($event)' id="<?php echo elgg_echo('projects:label:all', "en"); ?>" data-filter-type="status"><?php echo elgg_echo('projects:label:all'); ?></a>
             </li>
             <li>
-                <a class="list-group-item" href="" ng-click='vm.filter($event)' id="Submitted" data-filter-type="status"><?php echo elgg_echo('projects:label:submitted'); ?></a>
+                <a class="list-group-item" href="" ng-click='vm.filter($event)' id="<?php echo elgg_echo('projects:label:submitted', "en"); ?>" data-filter-type="status"><?php echo elgg_echo('projects:label:submitted'); ?></a>
             </li>
             <li>
-                <a class="list-group-item" href="" ng-click='vm.filter($event)' id="Under Review" data-filter-type="status"><?php echo elgg_echo('projects:label:underreview'); ?></a>
+                <a class="list-group-item" href="" ng-click='vm.filter($event)' id="<?php echo elgg_echo('projects:label:underreview', "en"); ?>" data-filter-type="status"><?php echo elgg_echo('projects:label:underreview'); ?></a>
             </li>
             <li>
-                <a class="list-group-item" href="" ng-click='vm.filter($event)' id="In Progress" data-filter-type="status"><?php echo elgg_echo('projects:label:inprogress'); ?></a>
+                <a class="list-group-item" href="" ng-click='vm.filter($event)' id="<?php echo elgg_echo('projects:label:inprogress', "en"); ?>" data-filter-type="status"><?php echo elgg_echo('projects:label:inprogress'); ?></a>
             </li>
             <li>
-                <a class="list-group-item" href="" ng-click='vm.filter($event)' id="Completed" data-filter-type="status"><?php echo elgg_echo('projects:label:completed'); ?></a>
+                <a class="list-group-item" href="" ng-click='vm.filter($event)' id="<?php echo elgg_echo('projects:label:completed', "en"); ?>" data-filter-type="status"><?php echo elgg_echo('projects:label:completed'); ?></a>
+            </li>
+	 <li>
+                <a class="list-group-item" href="" ng-click='vm.filter($event)' id="<?php echo elgg_echo('projects:label:cancelled', "en"); ?>" data-filter-type="status"><?php echo elgg_echo('projects:label:cancelled'); ?></a>
             </li>
         </ul>
     </div>

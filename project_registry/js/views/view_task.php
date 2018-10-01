@@ -156,10 +156,10 @@
 					<a class='glyphicon edit-button timeline' data-id="timeline" ng-if='vm.project.can_edit' ng-click="vm.toggleEditMode($event)"></a>
 				</div>
 				<div class='col-sm-12 field-body'>
-					<p data-field-id="timeline">{{vm.project.timeline == null ? "" : vm.project.timeline | date: 'yyyy-MM-dd'}} </p>
+					<p data-field-id="timeline">{{vm.project.timeline}} </p>
 
-					<div ng-if="vm.project.editable['timeline']">
-                        <input type="date" ng-model='vm.project.timeline' />
+					<div ng-show="vm.project.editable['timeline']">
+                        <input  type="text" placeholder="yyyy-mm-dd" id="datepicker"  ng-model='vm.timeline' />
 						<div class='editable-content-buttons'>
 							<a class='elgg-button elgg-button-action elgg-button-cancel' data-id="timeline" ng-click="vm.toggleEditMode($event)"><?php echo elgg_echo('projects:cancel'); ?></a>
 							<a class='elgg-button elgg-button-action elgg-button-accept' data-id="timeline" ng-click="vm.update('timeline'); vm.toggleEditMode($event)"><?php echo elgg_echo('projects:accept'); ?></a>

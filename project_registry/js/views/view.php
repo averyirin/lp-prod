@@ -9,7 +9,8 @@
 
 
 				<!-- Confluence Integration for only project admins -->
-			         <div ng-if="user.project_admin">
+				<?php if(elgg_is_admin_logged_in()){ ?>
+			         <div>
 
 			             <!-- Confluence Integration Modal  ------------------------------------>
 			             <script type="text/ng-template" id="confluenceModal.html">
@@ -61,7 +62,7 @@
 			         </div>
 			         <!-- End confluence integration -->
 
-
+			<?php } ?>
 
 
 
@@ -84,6 +85,10 @@
 			<div class='completed' ng-if="vm.project.status=='Completed'">
 				<span class='glyphicon exclamation'></span>
 				<p>{{vm.project.status}}</p>
+			</div>
+			<div class='cancelled' style="background-color: #666;" ng-if="vm.project.status=='Cancelled'">
+				<span class='glyphicon exclamation'></span>
+				<p>{{ (vm.statuses | filter : {'id': vm.project.status})[0].name}}</p>
 			</div>
 			<h4><?php echo elgg_echo('projects:submittedBy');?>: <span>{{vm.project.owner}}</span> <?php echo elgg_echo('projects:on');?> {{vm.project.time_created}}</h4>
 		</div>
@@ -896,10 +901,13 @@
 					<a class='glyphicon edit-button status' data-id="status" ng-if="user.project_admin" ng-click="vm.toggleEditMode($event)"></a>
 				</div>
 				<div class="col-sm-12 field-body">
-					<p data-field-id="status">{{vm.project.status}}</p>
+					<p data-field-id="status">
+{{ (vm.statuses | filter : {'id': vm.project.status})[0].name}}
+
+</p>
 
 					<div ng-if="vm.project.editable['status']">
-						<select ng-model='vm.status' ng-options='status.name as status.name for status in vm.statuses'></select>
+						<select ng-model='vm.status' ng-options='status.id as status.name for status in vm.statuses'></select>
 						<div class='editable-content-buttons'>
 							<a class='elgg-button elgg-button-action elgg-button-cancel' data-id="status" ng-click="vm.toggleEditMode($event)"><?php echo elgg_echo('projects:cancel'); ?></a>
 							<a class='elgg-button elgg-button-action elgg-button-accept' data-id="status" ng-click="vm.update('status'); vm.toggleEditMode($event)"><?php echo elgg_echo('projects:accept'); ?></a>
