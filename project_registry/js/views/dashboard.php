@@ -4,18 +4,7 @@
     <h2><?php echo elgg_echo('projects:dashboard:title');?></h2>
     <div class="btn-group">      
       
-<?php
 
-echo elgg_view('output/url', array(
-            'name' => 'export',
-            'text' => elgg_echo('export elgg view'),
-            'href' => elgg_get_site_url().'action/support_request_export/export',
-            'class' => 'elgg-button elgg-button-action',
-            'is_action' => true,
-		'is_trusted' => true
-    ));
-
- ?>
          <!--   <a href='#/projects/create' class='elgg-button elgg-button-action'><?php echo elgg_echo('projects:create');?></a> -->
             <a href='#/projects' class='elgg-button elgg-button-action'><?php echo elgg_echo('projects:all:list');?></a>
         </div>
@@ -90,26 +79,26 @@ echo elgg_view('output/url', array(
         <ul role="tablist" class="generated">
 
             <li>
-<a href="" ng-click="vm.filterProjects('all'); vm.toggleFilterTab();" id="all" class="ng-binding">All</a>
+<a href="" ng-click="vm.filterProjects('all'); vm.toggleFilterTab();" id="all" class="ng-binding"><?php echo elgg_echo('projects:label:all'); ?></a>
             </li>
 
 
             <li>
-<a href="" ng-click="vm.filterProjects('modernization'); vm.toggleFilterTab();" id="modernization" class="ng-binding">IT&amp;E Modernization</a>
+<a href="" ng-click="vm.filterProjects('modernization'); vm.toggleFilterTab();" id="modernization" class="ng-binding"><?php echo elgg_echo('projects:owner:modernization'); ?></a>
             </li>
 
 
 
             <li>
-<a href="" ng-click="vm.filterProjects('lsc'); vm.toggleFilterTab();" id="lsc" class="ng-binding">Learning Support Centre</a>            
+<a href="" ng-click="vm.filterProjects('lsc'); vm.toggleFilterTab();" id="lsc" class="ng-binding"><?php echo elgg_echo('projects:owner:lsc'); ?></a>            
 		</li>
 
             <li>
-<a href="" ng-click="vm.filterProjects('alsc'); vm.toggleFilterTab();" id="alsc" class="ng-binding">RCAF Learning Support Centre</a>
+<a href="" ng-click="vm.filterProjects('alsc'); vm.toggleFilterTab();" id="alsc" class="ng-binding"><?php echo elgg_echo('projects:owner:alsc'); ?></a>
             </li>
 
             <li>
-<a href="" ng-click="vm.filterProjects('undefined'); vm.toggleFilterTab();" id="undefined" class="ng-binding">Unassigned</a>
+<a href="" ng-click="vm.filterProjects('undefined'); vm.toggleFilterTab();" id="undefined" class="ng-binding"><?php echo elgg_echo('projects:owner:unassigned'); ?></a>
             </li>
 
 
