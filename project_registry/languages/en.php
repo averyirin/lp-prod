@@ -264,7 +264,14 @@ $english = array(
 	   'projects:confluence:modal:whereAddTo' => "Where would you like to add this project to?",
 
 
-
+	'projects:label:cancelled' => 'Cancelled',
+	'support_request:filterByCollection' => 'Filter by Collection',
+	'support_request:current' => 'Current',
+	'support_request:archived' => 'Archived',
+	'support_request:archiveProject' => 'Archive project',
+	'support_request:unarchiveProject' => 'Unarchive project',
+	'support_request:askUnarchiveProject' => 'Are you sure you want to unarchive this project?',
+	'support_request:askArchiveProject' => 'Are you sure you want to archive this project?',
 );
 
 add_translation("en", $english);
