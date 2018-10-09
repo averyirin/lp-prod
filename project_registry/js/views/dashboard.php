@@ -2,9 +2,14 @@
 ?>
 <div class='template-header col-lg-12'>
     <h2><?php echo elgg_echo('projects:dashboard:title');?></h2>
-    <div class="btn-group">      
-      
+    <div class="btn-group">    
+	<?php if(elgg_is_admin_logged_in()){ ?>  
+          <a href='' ng-click="vm.exportRequests(); vm.exportBtnSetInactive($event)" class='elgg-button elgg-button-action'><?php echo elgg_echo('export');?></a>
+          <a href="{{vm.reportUrl}}" ng-if="vm.reportUrl" id="confluenceAlreadyBtn" class='elgg-button elgg-button-action'>View Report</a>
+ <a href="https://confluence.ongarde.net/display/SRR/" id="confluenceAlreadyBtn" class='elgg-button elgg-button-action'>View Old Reports</a>
 
+
+     <?php } ?>
          <!--   <a href='#/projects/create' class='elgg-button elgg-button-action'><?php echo elgg_echo('projects:create');?></a> -->
             <a href='#/projects' class='elgg-button elgg-button-action'><?php echo elgg_echo('projects:all:list');?></a>
         </div>
@@ -14,6 +19,7 @@
 <div  id="sidebar" style="margin-bottom:10px;">
         <h3 style="" ><?php echo elgg_echo('support_request:filterByCollection');?></h3>
         <ul>
+
 
             <li>
                 <a class="list-group-item  list-collection active"  href="" ng-click='vm.filter($event)' id="false" data-filter-type="archived"><?php echo elgg_echo('support_request:current'); ?></a>
@@ -82,10 +88,6 @@
 <a href="" ng-click="vm.filterProjects('all'); vm.toggleFilterTab();" id="all" class="ng-binding"><?php echo elgg_echo('projects:label:all'); ?></a>
             </li>
 
-
-            <li>
-<a href="" ng-click="vm.filterProjects('modernization'); vm.toggleFilterTab();" id="modernization" class="ng-binding"><?php echo elgg_echo('projects:owner:modernization'); ?></a>
-            </li>
 
 
 

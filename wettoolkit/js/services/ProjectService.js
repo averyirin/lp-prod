@@ -77,8 +77,13 @@
                 return $q.reject(error);
             });
         }
-        function createNewCharter(body, addMethod, spaceKey,
-projectGuid, spaceName) {
+
+	
+
+        function uploadToConfluence(body, addMethod, spaceKey,
+projectGuid, spaceName, overview, unassigned) {
+	     overview = (overview== undefined) ? '' : overview;
+	     unassigned= (unassigned== undefined) ? '' : unassigned;
             var params = {'public_key': publicKey};
             var Space = $resource('internapi/confluence_spaces/:id',
                 {},
@@ -95,6 +100,8 @@ projectGuid, spaceName) {
             sendData.spaceKey = spaceKey;
             sendData.projectGuid = projectGuid;
             sendData.spaceName = spaceName;
+            sendData.overview = overview;
+            sendData.unassigned = unassigned ;
             return Space.save(sendData).$promise.then(function (success)
 {
                 return success;
@@ -248,8 +255,7 @@ projectGuid, spaceName) {
             getProjects: getProjects,
 	    	getSpace: getSpace,
 		getSpaces: getSpaces,
-		createNewCharter: createNewCharter,
-	
+		uploadToConfluence: uploadToConfluence,	
             create: create,
             edit: edit,
             update: update,

@@ -183,8 +183,221 @@ function confluenceSpaceRouter($method, $page, $publicKey)
             $project_guid = $payload['projectGuid'];
             $spaceName = $payload['spaceName'];
 
+		
 
-            //New space
+            if($payload['addMethod'] == "export"){
+
+		$spaceName = "";
+		$reportTitle= $payload['body'];
+		$projects = $payload['projectGuid'];
+		$tasks = $payload['spaceName'];		
+		$overview = $payload['overview'];
+		$unassigned= $payload['unassigned'];
+
+
+		 //Create document
+            //Get the homepage id, the ancestor for our new report document
+            $chHomepage = curl_init();
+            //sets the username and password
+		if($useProxy){
+ 	    curl_setopt($chHomepage, CURLOPT_PROXY, $proxy); 
+		}              
+            curl_setopt($chHomepage, CURLOPT_USERPWD, "bordenstu:ortermatex");
+            curl_setopt($chHomepage, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($chHomepage, CURLOPT_URL, 'https://confluence.ongarde.net/rest/api/space/' . $spaceKey .
+                '?expand=homepage');
+            curl_setopt($chHomepage, CURLOPT_SSL_VERIFYPEER, false);
+            $homepageResponse = curl_exec($chHomepage);
+            curl_close($chHomepage);
+            //decodes json to assoc array
+            $homepage_json = json_decode($homepageResponse, true);
+
+            //link to homepage
+            $spaceHomepageId = $homepage_json["homepage"]['id'];
+	 $year = date("Y");
+	$month = date("m");
+	$day = date("d");
+	$hour = date("H");
+	$min = date("i");
+	$sec = date("s");
+
+
+ 	//create overview report
+            $documentName = $reportTitle." Report - ".$year . "/".$month."/".$day ." ".$hour .":".$min .":".$sec;
+            //create report page in parent space with the ancestor set to the home page
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_USERPWD, "bordenstu:ortermatex");
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                'Content-Type: application/json'
+            ));
+ 		if($useProxy){
+	    curl_setopt($ch, CURLOPT_PROXY, $proxy);
+		}
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_URL, 'https://confluence.ongarde.net/rest/api/content');
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            //creating the charter page
+            $projectCharter = array(
+                "type" => "page",
+                "title" => $documentName,
+                "space" => array("key" => $spaceKey),
+                "ancestors" => array(array("type" => "page", "id" => $spaceHomepageId)),
+                "body" => array("storage" => array("value" => $overview,
+                    "representation" => "storage")));
+
+            //translate to json and send the request
+            $jsonCharter = json_encode($projectCharter);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonCharter);
+            $charterResponse = curl_exec($ch);
+            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            curl_close($ch);
+            $response_json = json_decode($charterResponse, true);
+            $overviewId = $response_json["id"];	    
+            $overviewURL = $response_json["_links"]["base"].$response_json["_links"]["webui"];	    
+
+
+
+            //create project report
+            $documentName = "Project Report - ".$year . "/".$month."/".$day ." ".$hour .":".$min .":".$sec;
+
+            //create report page in parent space with the ancestor set to the home page
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_USERPWD, "bordenstu:ortermatex");
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                'Content-Type: application/json'
+            ));
+ 		if($useProxy){
+	    curl_setopt($ch, CURLOPT_PROXY, $proxy);
+		}
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_URL, 'https://confluence.ongarde.net/rest/api/content');
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            //creating the charter page
+            $projectCharter = array(
+                "type" => "page",
+                "title" => $documentName,
+                "space" => array("key" => $spaceKey),
+                "ancestors" => array(array("type" => "page", "id" => $overviewId )),
+                "body" => array("storage" => array("value" => $projects,
+                    "representation" => "storage")));
+
+            //translate to json and send the request
+            $jsonCharter = json_encode($projectCharter);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonCharter);
+            $charterResponse = curl_exec($ch);
+            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            curl_close($ch);
+            $response_json = json_decode($charterResponse, true);
+
+
+		//create tasks
+            $documentName = "Task Report - ".$year . "/".$month."/".$day ." ".$hour .":".$min .":".$sec;
+
+            //create report page in parent space with the ancestor set to the home page
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_USERPWD, "bordenstu:ortermatex");
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                'Content-Type: application/json'
+            ));
+ 		if($useProxy){
+	    curl_setopt($ch, CURLOPT_PROXY, $proxy);
+		}
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_URL, 'https://confluence.ongarde.net/rest/api/content');
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            //creating the charter page
+            $projectCharter = array(
+                "type" => "page",
+                "title" => $documentName,
+                "space" => array("key" => $spaceKey),
+                "ancestors" => array(array("type" => "page", "id" => $overviewId )),
+                "body" => array("storage" => array("value" => $tasks,
+                    "representation" => "storage")));
+
+            //translate to json and send the request
+            $jsonCharter = json_encode($projectCharter);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonCharter);
+            $charterResponse = curl_exec($ch);
+            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            curl_close($ch);
+            $response_json = json_decode($charterResponse, true);
+
+
+	//create unassigned
+            $documentName = "Unassigned Report - ".$year . "/".$month."/".$day ." ".$hour .":".$min .":".$sec;
+
+            //create report page in parent space with the ancestor set to the home page
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_USERPWD, "bordenstu:ortermatex");
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                'Content-Type: application/json'
+            ));
+ 		if($useProxy){
+	    curl_setopt($ch, CURLOPT_PROXY, $proxy);
+		}
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_URL, 'https://confluence.ongarde.net/rest/api/content');
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            //creating the charter page
+            $projectCharter = array(
+                "type" => "page",
+                "title" => $documentName,
+                "space" => array("key" => $spaceKey),
+                "ancestors" => array(array("type" => "page", "id" => $overviewId )),
+                "body" => array("storage" => array("value" => $unassigned,
+                    "representation" => "storage")));
+
+            //translate to json and send the request
+            $jsonCharter = json_encode($projectCharter);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonCharter);
+            $charterResponse = curl_exec($ch);
+            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            curl_close($ch);
+            $response_json = json_decode($charterResponse, true);
+
+
+
+
+            if ($httpCode == 200) {
+                //Return successful upload message
+                $session->setHeader(200);
+                $status = 200;
+                $message = ' Report has been uploaded.';
+                echo json_encode(array('status' => $status, 'data' => $message, 'url'=> $overviewURL), 32);
+
+            } else if ($httpCode == 400) {
+                $session->setHeader(400);
+                $status = 'alreadyexists';
+                $message = " Sorry, a page named ".$documentName." already exists in space " . $spaceKey ." ".$charterResponse;
+                echo json_encode(array('status' => $status, 'data' => $message), 32);
+
+            } else if ($httpCode == 401) {
+                $session->setHeader(401);
+                $status = 'unauthorized';
+                $message = " You are unauthorized to create new pages";
+                echo json_encode(array('status' => $status, 'data' => $message), 32);
+
+            } else if ($httpCode == 404) {
+                $session->setHeader(404);
+                $status = 'notfound';
+                $message = " Could not find space: ".$spaceKey;
+                echo json_encode(array('status' => $status, 'data' => $message), 32);
+
+            } else {
+                $session->setHeader(404);
+                $status = 'error';
+                $message = " Something went wrong, please contact administrator.";
+                echo json_encode(array('status' => $status, 'data' => $message), 32);
+            }
+
+
+
+	    }else{
+		//New space
             if ($payload['addMethod'] == "new") {
                 //create new space
                 $chSpace = curl_init();
@@ -294,6 +507,12 @@ function confluenceSpaceRouter($method, $page, $publicKey)
                 $message = " Something went wrong, please contact administrator.";
                 echo json_encode(array('status' => $status, 'data' => $message), 32);
             }
+
+
+
+	    }
+
+            
             exit;
             break;
     }
