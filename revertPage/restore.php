@@ -14,11 +14,9 @@ $annotation = elgg_get_annotation_from_id($annotationGuid);
 
 if (elgg_instanceof($page, 'object', 'page') || elgg_instanceof($page, 'object', 'page_top')) {
 	// only allow owners and admin to restore
-	if (elgg_is_admin_logged_in() || elgg_get_logged_in_user_guid() == $page->getOwnerGuid()) {
+	if (elgg_is_admin_logged_in() || elgg_get_logged_in_user_guid() == $page->getOwnerGuid()|| check_entity_relationship(elgg_get_logged_in_user_guid(), "group_admin", $page->container_guid)) {
 		$container = get_entity($page->container_guid);
 		$page->description = $annotation->value;
-
-
 		
 if ($page->save()) {
 
